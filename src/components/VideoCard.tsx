@@ -11,6 +11,9 @@ export interface VideoRow {
   duration_seconds: number;
   views: number;
   created_at: string;
+  category?: string;
+  description?: string;
+  video_url?: string;
 }
 
 export function VideoCard({ v }: { v: VideoRow }) {

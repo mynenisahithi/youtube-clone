@@ -44,7 +44,8 @@ export function CommentsSection({ videoId }: { videoId: string }) {
 
   const voteMut = useMutation({
     mutationFn: async ({ id, field, current }: { id: string; field: "likes" | "dislikes"; current: number }) => {
-      const { error } = await supabase.from("comments").update({ [field]: current + 1 }).eq("id", id);
+      const patch = field === "likes" ? { likes: current + 1 } : { dislikes: current + 1 };
+      const { error } = await supabase.from("comments").update(patch).eq("id", id);
       if (error) throw error;
     },
     onSuccess: () => qc.invalidateQueries({ queryKey: ["comments", videoId] }),
