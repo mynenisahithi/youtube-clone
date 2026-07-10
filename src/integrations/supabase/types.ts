@@ -81,6 +81,33 @@ export type Database = {
           },
         ]
       }
+      friendships: {
+        Row: {
+          addressee_id: string
+          created_at: string
+          id: string
+          requester_id: string
+          status: Database["public"]["Enums"]["friendship_status"]
+          updated_at: string
+        }
+        Insert: {
+          addressee_id: string
+          created_at?: string
+          id?: string
+          requester_id: string
+          status?: Database["public"]["Enums"]["friendship_status"]
+          updated_at?: string
+        }
+        Update: {
+          addressee_id?: string
+          created_at?: string
+          id?: string
+          requester_id?: string
+          status?: Database["public"]["Enums"]["friendship_status"]
+          updated_at?: string
+        }
+        Relationships: []
+      }
       history: {
         Row: {
           id: string
@@ -258,6 +285,7 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
+      friendship_status: "pending" | "accepted"
       plan_tier: "free" | "bronze" | "silver" | "gold"
     }
     CompositeTypes: {
@@ -386,6 +414,7 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
+      friendship_status: ["pending", "accepted"],
       plan_tier: ["free", "bronze", "silver", "gold"],
     },
   },
