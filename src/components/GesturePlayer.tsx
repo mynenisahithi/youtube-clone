@@ -99,7 +99,7 @@ export function GesturePlayer({ src, poster, limitSec, nextVideoId, onOpenCommen
         controls
         playsInline
         preload="metadata"
-        crossOrigin="anonymous"
+
         onError={() => setLoadError(true)}
         onLoadedData={() => setLoadError(false)}
         className="aspect-video w-full"
