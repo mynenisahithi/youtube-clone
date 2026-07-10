@@ -14,14 +14,15 @@ const you = [
   { to: "/downloads", label: "Downloads", icon: Download },
 ];
 const categories = [
-  { label: "Trending", icon: Flame, q: "trending" },
-  { label: "Music", icon: Music, q: "music" },
-  { label: "Movies", icon: Film, q: "animation" },
-  { label: "Gaming", icon: Gamepad2, q: "gaming" },
-  { label: "News", icon: Newspaper, q: "news" },
-  { label: "Sports", icon: Trophy, q: "sports" },
-  { label: "Learning", icon: Lightbulb, q: "learning" },
+  { label: "Trending", icon: Flame, q: "Trending" },
+  { label: "Music", icon: Music, q: "Music" },
+  { label: "Movies", icon: Film, q: "Movies" },
+  { label: "Gaming", icon: Gamepad2, q: "Gaming" },
+  { label: "News", icon: Newspaper, q: "News" },
+  { label: "Sports", icon: Trophy, q: "Sports" },
+  { label: "Learning", icon: Lightbulb, q: "Learning" },
 ];
+
 
 export function Sidebar({ open, onClose }: { open: boolean; onClose: () => void }) {
   const loc = useLocation();
