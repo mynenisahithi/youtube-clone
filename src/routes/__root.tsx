@@ -90,7 +90,9 @@ function RootComponent() {
       <AuthProvider>
         <Outlet />
         <Toaster />
+        <IncomingCallProvider />
       </AuthProvider>
+
     </QueryClientProvider>
   );
 }
