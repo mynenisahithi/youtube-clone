@@ -1,5 +1,5 @@
 import { Link, useLocation, useRouterState } from "@tanstack/react-router";
-import { Home, Flame, Music, Film, Gamepad2, Newspaper, Trophy, Lightbulb, Download, History, User, Crown, Search } from "lucide-react";
+import { Home, Flame, Music, Film, Gamepad2, Newspaper, Trophy, Lightbulb, Download, History, User, Crown, Search, Users } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 
@@ -10,9 +10,11 @@ const main = [
 ];
 const you = [
   { to: "/profile", label: "Profile", icon: User },
+  { to: "/friends", label: "Friends", icon: Users },
   { to: "/history", label: "History", icon: History },
   { to: "/downloads", label: "Downloads", icon: Download },
 ];
+
 const categories = [
   { label: "Trending", icon: Flame, q: "Trending" },
   { label: "Music", icon: Music, q: "Music" },
