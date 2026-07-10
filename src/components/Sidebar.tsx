@@ -26,6 +26,13 @@ const categories = [
 
 export function Sidebar({ open, onClose }: { open: boolean; onClose: () => void }) {
   const loc = useLocation();
+  const currentQ = useRouterState({
+    select: (s) => {
+      const match = s.matches.find((m) => m.routeId === "/search");
+      return (match?.search as { q?: string } | undefined)?.q ?? "";
+    },
+  });
+
   return (
     <>
       {open && <div className="fixed inset-0 z-30 bg-black/50 lg:hidden" onClick={onClose} />}
