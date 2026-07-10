@@ -1,6 +1,7 @@
-import { Link, useLocation } from "@tanstack/react-router";
+import { Link, useLocation, useRouterState } from "@tanstack/react-router";
 import { Home, Flame, Music, Film, Gamepad2, Newspaper, Trophy, Lightbulb, Download, History, User, Crown, Search } from "lucide-react";
 import { cn } from "@/lib/utils";
+
 
 const main = [
   { to: "/", label: "Home", icon: Home },
@@ -13,17 +14,25 @@ const you = [
   { to: "/downloads", label: "Downloads", icon: Download },
 ];
 const categories = [
-  { label: "Trending", icon: Flame, q: "trending" },
-  { label: "Music", icon: Music, q: "music" },
-  { label: "Movies", icon: Film, q: "animation" },
-  { label: "Gaming", icon: Gamepad2, q: "gaming" },
-  { label: "News", icon: Newspaper, q: "news" },
-  { label: "Sports", icon: Trophy, q: "sports" },
-  { label: "Learning", icon: Lightbulb, q: "learning" },
+  { label: "Trending", icon: Flame, q: "Trending" },
+  { label: "Music", icon: Music, q: "Music" },
+  { label: "Movies", icon: Film, q: "Movies" },
+  { label: "Gaming", icon: Gamepad2, q: "Gaming" },
+  { label: "News", icon: Newspaper, q: "News" },
+  { label: "Sports", icon: Trophy, q: "Sports" },
+  { label: "Learning", icon: Lightbulb, q: "Learning" },
 ];
+
 
 export function Sidebar({ open, onClose }: { open: boolean; onClose: () => void }) {
   const loc = useLocation();
+  const currentQ = useRouterState({
+    select: (s) => {
+      const match = s.matches.find((m) => m.routeId === "/search");
+      return (match?.search as { q?: string } | undefined)?.q ?? "";
+    },
+  });
+
   return (
     <>
       {open && <div className="fixed inset-0 z-30 bg-black/50 lg:hidden" onClick={onClose} />}
@@ -41,17 +50,24 @@ export function Sidebar({ open, onClose }: { open: boolean; onClose: () => void 
             <>
               <div className="my-2 border-t" />
               <div className="px-3 py-2 text-xs font-semibold uppercase text-muted-foreground">Explore</div>
-              {categories.map((c) => (
-                <Link
-                  key={c.label}
-                  to="/search"
-                  search={{ q: c.q }}
-                  className="flex items-center gap-4 rounded-lg px-3 py-2 hover:bg-accent"
-                >
-                  <c.icon className="h-5 w-5" />
-                  <span className="text-sm">{c.label}</span>
-                </Link>
-              ))}
+              {categories.map((c) => {
+                const active = loc.pathname === "/search" && currentQ === c.q;
+                return (
+                  <Link
+                    key={c.label}
+                    to="/search"
+                    search={{ q: c.q }}
+                    className={cn(
+                      "flex items-center gap-4 rounded-lg px-3 py-2 hover:bg-accent",
+                      active && "bg-accent font-medium"
+                    )}
+                  >
+                    <c.icon className="h-5 w-5" />
+                    <span className="text-sm">{c.label}</span>
+                  </Link>
+                );
+              })}
+
             </>
           )}
         </nav>
