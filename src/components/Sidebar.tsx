@@ -50,17 +50,24 @@ export function Sidebar({ open, onClose }: { open: boolean; onClose: () => void 
             <>
               <div className="my-2 border-t" />
               <div className="px-3 py-2 text-xs font-semibold uppercase text-muted-foreground">Explore</div>
-              {categories.map((c) => (
-                <Link
-                  key={c.label}
-                  to="/search"
-                  search={{ q: c.q }}
-                  className="flex items-center gap-4 rounded-lg px-3 py-2 hover:bg-accent"
-                >
-                  <c.icon className="h-5 w-5" />
-                  <span className="text-sm">{c.label}</span>
-                </Link>
-              ))}
+              {categories.map((c) => {
+                const active = loc.pathname === "/search" && currentQ === c.q;
+                return (
+                  <Link
+                    key={c.label}
+                    to="/search"
+                    search={{ q: c.q }}
+                    className={cn(
+                      "flex items-center gap-4 rounded-lg px-3 py-2 hover:bg-accent",
+                      active && "bg-accent font-medium"
+                    )}
+                  >
+                    <c.icon className="h-5 w-5" />
+                    <span className="text-sm">{c.label}</span>
+                  </Link>
+                );
+              })}
+
             </>
           )}
         </nav>
