@@ -26,7 +26,7 @@ CSS3
 JavaScript
 Git & GitHub
 🚀 Installation
-git clone https://github.com/YOUR_USERNAME/youtube-clone.git
+git clone https://github.com/mynenisahithi/youtube-clone.git
 cd youtube-clone
 npm install
 npm start
