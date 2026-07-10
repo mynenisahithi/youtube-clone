@@ -90,13 +90,24 @@ export function GesturePlayer({ src, poster, limitSec, nextVideoId, onOpenCommen
   };
 
   return (
-    <div className="relative overflow-hidden rounded-xl bg-black" onPointerDown={handleTap}>
+    <div className="relative overflow-hidden rounded-xl bg-black">
       <video
+        key={reloadKey}
         ref={ref}
         src={src}
         poster={poster}
         controls
+        playsInline
+        preload="metadata"
+        crossOrigin="anonymous"
+        onError={() => setLoadError(true)}
+        onLoadedData={() => setLoadError(false)}
         className="aspect-video w-full"
+      />
+      {/* Gesture layer covers only the top portion so native controls stay clickable */}
+      <div
+        className="pointer-events-auto absolute inset-x-0 top-0 h-[calc(100%-56px)]"
+        onPointerDown={handleTap}
       />
       {gesture && (
         <div className="pointer-events-none absolute inset-0 grid place-items-center">
@@ -111,6 +122,23 @@ export function GesturePlayer({ src, poster, limitSec, nextVideoId, onOpenCommen
           </div>
         </div>
       )}
+      {loadError && (
+        <div className="absolute inset-0 grid place-items-center bg-black/85 p-4 text-center text-white">
+          <div className="max-w-sm space-y-3">
+            <p className="text-base font-medium">This video can't be played right now.</p>
+            <p className="text-sm text-white/70">
+              The source may be unavailable or blocked by your network.
+            </p>
+            <button
+              onClick={() => { setLoadError(false); setReloadKey((k) => k + 1); }}
+              className="rounded-md bg-white px-4 py-2 text-sm font-medium text-black hover:bg-white/90"
+            >
+              Retry
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
+
