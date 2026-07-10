@@ -1,6 +1,7 @@
-import { Link, useLocation } from "@tanstack/react-router";
+import { Link, useLocation, useRouterState } from "@tanstack/react-router";
 import { Home, Flame, Music, Film, Gamepad2, Newspaper, Trophy, Lightbulb, Download, History, User, Crown, Search } from "lucide-react";
 import { cn } from "@/lib/utils";
+
 
 const main = [
   { to: "/", label: "Home", icon: Home },
