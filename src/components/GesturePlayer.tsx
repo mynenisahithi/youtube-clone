@@ -20,6 +20,9 @@ export function GesturePlayer({ src, poster, limitSec, nextVideoId, onOpenCommen
   const singleTapTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const navigate = useNavigate();
   const [limitHit, setLimitHit] = useState(false);
+  const [loadError, setLoadError] = useState(false);
+  const [reloadKey, setReloadKey] = useState(0);
+
 
   const flash = (g: Gesture) => {
     setGesture(g);
