@@ -3,7 +3,7 @@
 
 A full-stack YouTube Clone prototype inspired by YouTube, built using modern web technologies. The project provides a responsive and user-friendly interface for browsing, searching, and watching videos.
 
-✨ Features
+## Features
 🔐 User Authentication (Login & Signup)
 🎥 Video Streaming
 🔍 Search Videos
@@ -16,7 +16,7 @@ A full-stack YouTube Clone prototype inspired by YouTube, built using modern web
 💎 Premium Features
 🌙 Dark & Light Theme
 📱 Responsive Design (Desktop, Tablet & Mobile)
-🛠️ Technologies Used
+## Technologies Used
 React.js
 Node.js
 Express.js
@@ -25,13 +25,13 @@ HTML5
 CSS3
 JavaScript
 Git & GitHub
-🚀 Installation
-git clone https://github.com/mynenisahithi/youtube-clone.git
+## Installation
+https://github.com/mynenisahithi/youtube-clone
 cd youtube-clone
 npm install
 npm start
 
 
-👩‍💻 Author
+## Author
 
 Sahithi Myneni
